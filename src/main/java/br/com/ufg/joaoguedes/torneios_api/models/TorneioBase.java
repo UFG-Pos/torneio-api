@@ -3,9 +3,7 @@ package br.com.ufg.joaoguedes.torneios_api.models;
 import br.com.ufg.joaoguedes.torneios_api.enums.StatusTorneio;
 import br.com.ufg.joaoguedes.torneios_api.enums.TipoTorneio;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -15,6 +13,8 @@ import java.time.LocalDate;
 @DiscriminatorColumn(name = "tipo")
 @Getter
 @Setter
+@AllArgsConstructor
+@Builder
 @NoArgsConstructor
 public abstract class TorneioBase {
 

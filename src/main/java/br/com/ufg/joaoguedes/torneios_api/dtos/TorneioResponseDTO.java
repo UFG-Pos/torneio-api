@@ -2,10 +2,7 @@ package br.com.ufg.joaoguedes.torneios_api.dtos;
 
 import br.com.ufg.joaoguedes.torneios_api.enums.StatusTorneio;
 import br.com.ufg.joaoguedes.torneios_api.enums.TipoTorneio;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -13,8 +10,9 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Data
 public class TorneioResponseDTO {
-
     private Long id;
     private String nome;
     private TipoTorneio tipo;
@@ -22,7 +20,5 @@ public class TorneioResponseDTO {
     private LocalDate dataFim;
     private Integer maxParticipantes;
     private StatusTorneio status;
-
-    // usado apenas em torneios de fase de grupos
     private Integer numeroGrupos;
 }

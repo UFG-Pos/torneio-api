@@ -7,10 +7,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/torneios")
@@ -28,5 +27,12 @@ public class TorneioController {
     public ResponseEntity<TorneioResponseDTO> criarTorneio(@Valid @RequestBody TorneioRequestDTO requestDTO) {
         TorneioResponseDTO response = torneioService.criarTorneio(requestDTO);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping
+    @Operation(summary = "Listar torneios", description = "Retorna todos os torneios cadastrados.")
+    public ResponseEntity<List<TorneioResponseDTO>> listarTorneios() {
+        List<TorneioResponseDTO> torneios = torneioService.listarTorneios();
+        return ResponseEntity.ok(torneios);
     }
 }
