@@ -1,0 +1,5 @@
+CREATE TABLE jogadores (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    equipe_id INT NOT NULL REFERENCES equipes(id) ON DELETE CASCADE
+);
