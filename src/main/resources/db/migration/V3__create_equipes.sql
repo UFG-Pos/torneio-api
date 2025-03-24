@@ -1,7 +1,11 @@
-CREATE TABLE equipes (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
+DROP TABLE IF EXISTS equipes;
 
-    torneio_eliminatoria_simples_id INT REFERENCES torneios_eliminatoria_simples(id) ON DELETE CASCADE,
-    torneio_fase_grupos_id INT REFERENCES torneios_fase_grupos(id) ON DELETE CASCADE
+CREATE TABLE equipes (
+    id BIGSERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    torneio_id BIGSERIAL NOT NULL,
+    CONSTRAINT fk_equipes_torneio
+        FOREIGN KEY (torneio_id)
+        REFERENCES torneios_eliminatoria_simples(id)
+        ON DELETE CASCADE
 );

@@ -33,7 +33,10 @@ public class Partida {
     @JoinColumn(name = "equipe_b_id")
     private Equipe equipeB;
 
+    @Column(name = "placar_equipe_a")
     private Integer placarEquipeA;
+
+    @Column(name = "placar_equipe_b")
     private Integer placarEquipeB;
 
     @Enumerated(EnumType.STRING)

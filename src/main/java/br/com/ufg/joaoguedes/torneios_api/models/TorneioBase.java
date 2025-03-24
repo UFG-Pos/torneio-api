@@ -9,8 +9,9 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
+@Table(name = "torneio_base")
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo")
 @Getter
 @Setter
@@ -21,6 +22,7 @@ public abstract class TorneioBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
+    @Column(nullable = false)
     protected String nome;
 
     @Column(name = "data_inicio", nullable = false)
