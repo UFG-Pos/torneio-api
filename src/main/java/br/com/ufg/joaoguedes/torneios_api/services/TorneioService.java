@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 public class TorneioService {
@@ -58,5 +60,17 @@ public class TorneioService {
         return todos.stream()
                 .map(mapper::toDTO)
                 .toList();
+    }
+
+    public TorneioResponseDTO buscarTorneioPorId(Long id) {
+        TorneioBase torneio = Stream.of(
+                        eliminatoriaRepo.findById(id),
+                        faseDeGruposRepo.findById(id)
+                ).filter(Optional::isPresent)
+                .map(Optional::get)
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Torneio não encontrado"));
+
+        return mapper.toDTO(torneio);
     }
 }

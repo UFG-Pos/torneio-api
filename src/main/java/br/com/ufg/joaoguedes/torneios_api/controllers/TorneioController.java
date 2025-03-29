@@ -35,4 +35,11 @@ public class TorneioController {
         List<TorneioResponseDTO> torneios = torneioService.listarTorneios();
         return ResponseEntity.ok(torneios);
     }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar torneio por ID", description = "Retorna os detalhes de um torneio específico.")
+    public ResponseEntity<TorneioResponseDTO> buscarTorneioPorId(@PathVariable Long id) {
+        TorneioResponseDTO torneio = torneioService.buscarTorneioPorId(id);
+        return ResponseEntity.ok(torneio);
+    }
 }

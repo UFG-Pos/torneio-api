@@ -5,6 +5,7 @@ import br.com.ufg.joaoguedes.torneios_api.enums.TipoTorneio;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,4 +22,6 @@ public class TorneioResponseDTO {
     private Integer maxParticipantes;
     private StatusTorneio status;
     private Integer numeroGrupos;
+
+    private List<EquipeResponseDTO> equipes;
 }

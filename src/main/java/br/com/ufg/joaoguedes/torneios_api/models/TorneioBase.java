@@ -3,9 +3,12 @@ package br.com.ufg.joaoguedes.torneios_api.models;
 import br.com.ufg.joaoguedes.torneios_api.enums.StatusTorneio;
 import br.com.ufg.joaoguedes.torneios_api.enums.TipoTorneio;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "torneio_base")
@@ -13,9 +16,6 @@ import java.time.LocalDate;
 @DiscriminatorColumn(name = "tipo")
 @Getter
 @Setter
-@AllArgsConstructor
-@Builder
-@NoArgsConstructor
 public abstract class TorneioBase {
 
     @Id
@@ -37,6 +37,9 @@ public abstract class TorneioBase {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     protected StatusTorneio status;
+
+    @OneToMany(mappedBy = "torneioBase", cascade = CascadeType.ALL)
+    private List<Equipe> equipes = new ArrayList<>();
 
     public abstract TipoTorneio getTipo();
 
