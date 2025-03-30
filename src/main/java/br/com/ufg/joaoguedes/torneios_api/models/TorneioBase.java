@@ -2,6 +2,9 @@ package br.com.ufg.joaoguedes.torneios_api.models;
 
 import br.com.ufg.joaoguedes.torneios_api.enums.StatusTorneio;
 import br.com.ufg.joaoguedes.torneios_api.enums.TipoTorneio;
+import br.com.ufg.joaoguedes.torneios_api.repositories.EquipeRepository;
+import br.com.ufg.joaoguedes.torneios_api.repositories.GrupoRepository;
+import br.com.ufg.joaoguedes.torneios_api.repositories.PartidaRepository;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,7 +44,13 @@ public abstract class TorneioBase {
     @OneToMany(mappedBy = "torneioBase", cascade = CascadeType.ALL)
     private List<Equipe> equipes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "torneioBase", cascade = CascadeType.ALL)
+    private List<Partida> partidas = new ArrayList<>();
+
     public abstract TipoTorneio getTipo();
 
     public abstract void validarRegras();
+
+    public abstract void gerarChave(List<Equipe> equipes, PartidaRepository partidaRepository, EquipeRepository equipeRepository,
+                                    GrupoRepository grupoRepository);
 }

@@ -24,4 +24,5 @@ public class TorneioResponseDTO {
     private Integer numeroGrupos;
 
     private List<EquipeResponseDTO> equipes;
+    private List<PartidaResponseDTO> partidas;
 }

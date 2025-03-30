@@ -1,5 +1,6 @@
 package br.com.ufg.joaoguedes.torneios_api.models;
 
+import br.com.ufg.joaoguedes.torneios_api.enums.FaseTorneio;
 import br.com.ufg.joaoguedes.torneios_api.enums.StatusPartida;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -41,4 +42,9 @@ public class Partida {
 
     @Enumerated(EnumType.STRING)
     private StatusPartida status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private FaseTorneio fase;
+    
 }

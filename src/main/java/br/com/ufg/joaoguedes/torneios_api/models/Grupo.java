@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "equipes")
+@Table(name = "grupos")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Equipe {
+public class Grupo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +25,8 @@ public class Equipe {
 
     @ManyToOne
     @JoinColumn(name = "torneio_id", nullable = false)
-    private TorneioBase torneioBase;
+    private TorneioFaseDeGrupos torneio;
 
-    @OneToMany(mappedBy = "equipe", cascade = CascadeType.ALL)
-    private List<Jogador> jogadores = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name = "grupo_id")
-    private Grupo grupo;
+    @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL)
+    private List<Equipe> equipes = new ArrayList<>();
 }

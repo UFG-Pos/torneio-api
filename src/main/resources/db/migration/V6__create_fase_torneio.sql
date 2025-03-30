@@ -1,0 +1,9 @@
+ALTER TABLE partidas
+ADD COLUMN fase VARCHAR(30);
+
+UPDATE partidas
+SET fase = 'QUARTAS_DE_FINAL'
+WHERE fase IS NULL;
+
+ALTER TABLE partidas
+ALTER COLUMN fase SET NOT NULL;

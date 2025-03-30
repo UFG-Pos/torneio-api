@@ -2,6 +2,7 @@ package br.com.ufg.joaoguedes.torneios_api.mappers;
 
 import br.com.ufg.joaoguedes.torneios_api.dtos.TorneioRequestDTO;
 import br.com.ufg.joaoguedes.torneios_api.dtos.TorneioResponseDTO;
+import br.com.ufg.joaoguedes.torneios_api.enums.StatusTorneio;
 import br.com.ufg.joaoguedes.torneios_api.models.TorneioBase;
 import br.com.ufg.joaoguedes.torneios_api.models.TorneioFaseDeGrupos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,15 @@ public class TorneioMapper {
     @Autowired
     private EquipeMapper equipeMapper;
 
+    @Autowired
+    private PartidaMapper partidaMapper;
+
     public void preencherCamposBase(TorneioBase entity, TorneioRequestDTO dto) {
         entity.setNome(dto.getNome());
         entity.setDataInicio(dto.getDataInicio());
         entity.setDataFim(dto.getDataFim());
         entity.setMaxParticipantes(dto.getMaxParticipantes());
-        entity.setStatus(dto.getStatus());
+        entity.setStatus(StatusTorneio.AGENDADO);
     }
 
 
@@ -38,6 +42,12 @@ public class TorneioMapper {
         if (t.getEquipes() != null) {
             builder.equipes(t.getEquipes().stream()
                     .map(equipeMapper::toDTO)
+                    .toList());
+        }
+
+        if (t.getPartidas() != null) {
+            builder.partidas(t.getPartidas().stream()
+                    .map(partidaMapper::toDTO)
                     .toList());
         }
 
