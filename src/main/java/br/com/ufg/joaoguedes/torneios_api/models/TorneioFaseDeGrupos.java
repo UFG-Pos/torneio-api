@@ -46,10 +46,8 @@ public class TorneioFaseDeGrupos extends TorneioBase {
     ) {
         validarRegras();
 
-        // Embaralha as equipes
         Collections.shuffle(equipes);
 
-        // Cria os grupos
         List<Grupo> grupos = new ArrayList<>();
         for (int i = 0; i < numeroGrupos; i++) {
             Grupo grupo = new Grupo();
@@ -58,10 +56,8 @@ public class TorneioFaseDeGrupos extends TorneioBase {
             grupos.add(grupo);
         }
 
-        // Salva os grupos antes de associar nas equipes
         grupos = grupoRepository.saveAll(grupos);
 
-        // Distribui as equipes nos grupos
         for (int i = 0; i < equipes.size(); i++) {
             Equipe equipe = equipes.get(i);
             Grupo grupo = grupos.get(i % numeroGrupos);
@@ -69,10 +65,8 @@ public class TorneioFaseDeGrupos extends TorneioBase {
             grupo.getEquipes().add(equipe);
         }
 
-        // Salva as equipes com seus respectivos grupos
         equipeRepository.saveAll(equipes);
 
-        // Gera as partidas dentro dos grupos
         for (Grupo grupo : grupos) {
             List<Equipe> equipesDoGrupo = grupo.getEquipes();
             for (int i = 0; i < equipesDoGrupo.size(); i++) {
